@@ -1159,8 +1159,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         }
       });
       const axis=el(&#x27;text&#x27;,{class:&#x27;tick&#x27;,&#x27;text-anchor&#x27;:&#x27;middle&#x27;,x:center,y:height-9}); axis.textContent=&#x27;0&#x27;; svg.append(axis);
-      ages.forEach((age,i)=&gt;{
-        const y=margin.top+i*rowH+1, bh=Math.max(2,rowH-2), mw=x(data.m[i]), fw=x(data.f[i]);
+      ages.map((age,i)=&gt;({age,i})).reverse().forEach(({age,i},displayIndex)=&gt;{
+        const y=margin.top+displayIndex*rowH+1, bh=Math.max(2,rowH-2), mw=x(data.m[i]), fw=x(data.f[i]);
         const mr=el(&#x27;rect&#x27;,{class:&#x27;male&#x27;,x:center-gap/2-mw,y,width:mw,height:bh,rx:1}); mr.setAttribute(&#x27;data-tooltip&#x27;,`${age}歳 男性 ${data.m[i].toFixed(2)}百万人`); svg.append(mr);
         const fr=el(&#x27;rect&#x27;,{class:&#x27;female&#x27;,x:center+gap/2,y,width:fw,height:bh,rx:1}); fr.setAttribute(&#x27;data-tooltip&#x27;,`${age}歳 女性 ${data.f[i].toFixed(2)}百万人`); svg.append(fr);
         const lab=el(&#x27;text&#x27;,{class:&#x27;age&#x27;,&#x27;text-anchor&#x27;:&#x27;middle&#x27;,x:center,y:y+bh*.72}); lab.textContent=age; svg.append(lab);
